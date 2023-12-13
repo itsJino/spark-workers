@@ -8,7 +8,7 @@ app = Flask(__name__)
 
 def get_api_key() -> str:
     # secret = os.environ.get("COMPUTE_API_KEY")
-    project_id = "warm-rookery-400321"
+    project_id = "635007151197"
     secret_id = "compute-api-key"
     
     client = secretmanager_v1.SecretManagerServiceClient()
