@@ -42,7 +42,7 @@ def add():
   if request.method=='GET':
     return "Use post to add" # replace with form template
   else:
-    token= get_api_key()
+    token= "ya29.a0AfB_byBGXcBEJAXisSdA7_iqiVJYSTtEOI_GDJrs6umtsEXxXQg7MFacsKgy-SGUzTj5O208hZgA3Loqjb7DerDrfK9ZBLynzQuYGlN98Nl-YE3laTMsV7dNJtgUSLXqPTf1-S2m0NQkhsm-hxUO_Fdy04LDzNrSq2Sb7fE2IL4Pc2VDhgZcewhjQYgqQIBH0F0L2Zf9UDXcyp4OGcvwOMOWVv0_SrZgwEOOIXqlUH26VzAHnIVJfBSNIrLia9xo3qkYg8g-Z5Vjnqbn8KyzrYdsOx17Nd9Dk-o3z0qtB68YBj2LuJhhotQPn4wxWV5sf1DhfwR7ai6QvfPyy0XKOnTe626FvlKN8zpHTQFwiHyn5xDS4TfYvLW-3eOrWRLLbI3xJ911GuMl0yWim_TACJveV0hMArEaCgYKAS4SARASFQHGX2MiUNWETZuzoIIc2HYdGdFMSQ0422"
     ret = addWorker(token,request.form['num'])
     return ret
 
