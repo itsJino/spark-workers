@@ -27,16 +27,17 @@ def get_api_key() -> str:
 @app.route("/")
 def hello():
     return "Add workers to the Spark cluster with a POST request to add"
+  
 @app.route("/test")
 def test():
     #return "Test" # testing 
     return(get_api_key())
+  
 @app.route("/add",methods=['GET','POST'])
 def add():
   if request.method=='GET':
     return "Use post to add" # replace with form template
   else:
-    token=get_api_key()
     token= "ya29.a0AfB_byCL9rKOkkmtAGD4aLKrKaYILQtBl_rPvZLShJFTjPmVtmr14t08dzOaGWRtHSuI5cdso4WaHemICPrjoZEkZB-0f7gf5O5clGPCaSJlZ3Ginplw3AoBD5f3TKUcWycvYI1252xgERkNUYeLNdwuijQusxOAQJ4rKOKgTEWvbigY1r25Odv_9gKNEDoFzWhsoMXmY4TW0gQLV8Ybvy5SVA40sGgLCuCkZHMHoN0r3mcPa38y9GdoqssLscZWypPsc7ahcXN0MffKePlApw4zG4sAlGERyb-wr4rWoq07WSkNWzYQOiI6quNMphDwcw_A31mGxNns3tiUusiFAOs0LP4YrJTYylcDSebb_HzKMq6pSdL_rRFsRV9bdkwt1vnUdPBKAPt968p39p7HVW22eLjGmm8aCgYKAegSARASFQHGX2MigE6ITL7DQBbsSImiDiaogg0422"
     ret = addWorker(token,request.form['num'])
     return ret
