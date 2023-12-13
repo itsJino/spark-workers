@@ -1,23 +1,35 @@
 from flask import Flask
 from flask import request
+from flask import render_template
 import requests
 import os
 import json
+from google.cloud import secretmanager
 app = Flask(__name__)
 
 def get_api_key() -> str:
-    secret = os.environ.get("COMPUTE_API_KEY")
+    # secret = os.environ.get("compute-api-key")
+    # 
+    # if secret:
+    #     return secret
+    # else:
+    #     #local testing
+    #     with open('.key') as f:
+    #         return f.read()
     
-    if secret:
-        return secret
-    else:
-        #local testing
-        with open('.key') as f:
-            return f.read()
+    client = secretmanager.SecretManagerServiceClient()
+
+    # Build the resource name of the secret version.
+    name = projects/635007151197/secrets/compute-api-key
+    # Access the secret version.
+    response = client.access_secret_version(name=name)
+
+    # Return the decoded payload.
+    return response.payload.data.decode('UTF-8')
       
 @app.route("/")
 def hello():
-    return "Add workers to the Spark cluster with a POST request to add"
+    return render_template('index.html')
 
 @app.route("/test")
 def test():
