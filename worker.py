@@ -7,7 +7,7 @@ from google.cloud import secretmanager_v1
 app = Flask(__name__)
 
 def get_api_key() -> str:
-    secret = os.environ.get("compute-api-key")
+    secret = os.environ.get("COMPUTE_API_KEY")
     # project_id = "635007151197"
     # secret_id = "compute-api-key"
     # 
