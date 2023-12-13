@@ -18,12 +18,14 @@ def get_api_key() -> str:
     # 
     # return response.payload.data.decode("UTF-8")
   
-    if secret:
-        return secret
-    else:
-        #local testing
-        with open('.key') as f:
-            return f.read()
+    # if secret:
+    #     return secret
+    # else:
+    #     #local testing
+    #     with open('.key') as f:
+    #         return f.read()
+    
+    return secret
       
 @app.route("/")
 def hello():
