@@ -1,15 +1,23 @@
 from flask import Flask
 from flask import request
-from flask import render_template
 import requests
 import os
 import json
-from google.cloud import secretmanager
+from google.cloud import secretmanager_v1
 app = Flask(__name__)
 
 def get_api_key() -> str:
-    secret = os.environ.get("compute-api-key")
-    
+    secret = os.environ.get("COMPUTE_API_KEY")
+    # project_id = "635007151197"
+    # secret_id = "compute-api-key"
+    # 
+    # client = secretmanager_v1.SecretManagerServiceClient()
+    # 
+    # name = f"projects/{project_id}/secrets/{secret_id}/versions/latest"
+    # response = client.access_secret_version(request={"name": name})
+    # 
+    # return response.payload.data.decode("UTF-8")
+  
     if secret:
         return secret
     else:
@@ -19,7 +27,7 @@ def get_api_key() -> str:
       
 @app.route("/")
 def hello():
-    return render_template('index.html')
+    return "Add workers to the Spark cluster with a POST request to add"
 
 @app.route("/test")
 def test():
@@ -31,9 +39,10 @@ def add():
   if request.method=='GET':
     return "Use post to add" # replace with form template
   else:
-    token= "ya29.a0AfB_byBGXcBEJAXisSdA7_iqiVJYSTtEOI_GDJrs6umtsEXxXQg7MFacsKgy-SGUzTj5O208hZgA3Loqjb7DerDrfK9ZBLynzQuYGlN98Nl-YE3laTMsV7dNJtgUSLXqPTf1-S2m0NQkhsm-hxUO_Fdy04LDzNrSq2Sb7fE2IL4Pc2VDhgZcewhjQYgqQIBH0F0L2Zf9UDXcyp4OGcvwOMOWVv0_SrZgwEOOIXqlUH26VzAHnIVJfBSNIrLia9xo3qkYg8g-Z5Vjnqbn8KyzrYdsOx17Nd9Dk-o3z0qtB68YBj2LuJhhotQPn4wxWV5sf1DhfwR7ai6QvfPyy0XKOnTe626FvlKN8zpHTQFwiHyn5xDS4TfYvLW-3eOrWRLLbI3xJ911GuMl0yWim_TACJveV0hMArEaCgYKAS4SARASFQHGX2MiUNWETZuzoIIc2HYdGdFMSQ0422"
+    token= "ya29.a0AfB_byCL9rKOkkmtAGD4aLKrKaYILQtBl_rPvZLShJFTjPmVtmr14t08dzOaGWRtHSuI5cdso4WaHemICPrjoZEkZB-0f7gf5O5clGPCaSJlZ3Ginplw3AoBD5f3TKUcWycvYI1252xgERkNUYeLNdwuijQusxOAQJ4rKOKgTEWvbigY1r25Odv_9gKNEDoFzWhsoMXmY4TW0gQLV8Ybvy5SVA40sGgLCuCkZHMHoN0r3mcPa38y9GdoqssLscZWypPsc7ahcXN0MffKePlApw4zG4sAlGERyb-wr4rWoq07WSkNWzYQOiI6quNMphDwcw_A31mGxNns3tiUusiFAOs0LP4YrJTYylcDSebb_HzKMq6pSdL_rRFsRV9bdkwt1vnUdPBKAPt968p39p7HVW22eLjGmm8aCgYKAegSARASFQHGX2MigE6ITL7DQBbsSImiDiaogg0422"
     ret = addWorker(token,request.form['num'])
     return ret
+
 
 def addWorker(token, num):
     with open('payload.json') as p:
