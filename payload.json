@@ -45,7 +45,7 @@
         }
       ],
       "stackType": "IPV4_ONLY",
-      "subnetwork": "projects/warm-rookery-400321/regions/europe-west1/subnetworks/default"
+      "subnetwork": "projects/warm-rookery-400321/regions/europe-west1-b/subnetworks/default"
     }
   ],
   "reservationAffinity": {

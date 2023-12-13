@@ -3,29 +3,17 @@ from flask import request
 import requests
 import os
 import json
-from google.cloud import secretmanager_v1
 app = Flask(__name__)
 
 def get_api_key() -> str:
     secret = os.environ.get("COMPUTE_API_KEY")
-    # project_id = "635007151197"
-    # secret_id = "compute-api-key"
-    # 
-    # client = secretmanager_v1.SecretManagerServiceClient()
-    # 
-    # name = f"projects/{project_id}/secrets/{secret_id}/versions/latest"
-    # response = client.access_secret_version(request={"name": name})
-    # 
-    # return response.payload.data.decode("UTF-8")
-  
-    # if secret:
-    #     return secret
-    # else:
-    #     #local testing
-    #     with open('.key') as f:
-    #         return f.read()
     
-    return secret
+    if secret:
+        return secret
+    else:
+        #local testing
+        with open('.key') as f:
+            return f.read()
       
 @app.route("/")
 def hello():
@@ -44,7 +32,6 @@ def add():
     token= get_api_key()
     ret = addWorker(token,request.form['num'])
     return ret
-
 
 def addWorker(token, num):
     with open('payload.json') as p:
