@@ -20,7 +20,7 @@ def get_api_key() -> str:
     client = secretmanager.SecretManagerServiceClient()
 
     # Build the resource name of the secret version.
-    name = f"projects/635007151197/secrets/compute-api-key/versions/latest"
+    name = f"projects/635007151197/secrets/compute-api-key/versions/2"
     
     # Access the secret version.
     response = client.access_secret_version(name=name)
