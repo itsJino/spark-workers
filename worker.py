@@ -7,15 +7,15 @@ from google.cloud import secretmanager_v1
 app = Flask(__name__)
 def get_api_key() -> str:
     secret = os.environ.get("COMPUTE_API_KEY")
-    # project_id = "635007151197"
-    # secret_id = "compute-api-key"
-    # 
-    # client = secretmanager_v1.SecretManagerServiceClient()
-    # 
-    # name = f"projects/{project_id}/secrets/{secret_id}/versions/latest"
-    # response = client.access_secret_version(request={"name": name})
-    # 
-    # return response.payload.data.decode("UTF-8")
+    project_id = "warm-rookery-400321"
+    secret_id = "compute-api-key"
+    
+    client = secretmanager_v1.SecretManagerServiceClient()
+    
+    name = f"projects/{project_id}/secrets/{secret_id}/versions/latest"
+    response = client.access_secret_version(request={"name": name})
+    
+    return response.payload.data.decode("UTF-8")
   
     # if secret:
     #     return secret
@@ -23,8 +23,6 @@ def get_api_key() -> str:
     #     #local testing
     #     with open('.key') as f:
     #         return f.read()
-    
-    return "ya29.a0AfB_byCL9rKOkkmtAGD4aLKrKaYILQtBl_rPvZLShJFTjPmVtmr14t08dzOaGWRtHSuI5cdso4WaHemICPrjoZEkZB-0f7gf5O5clGPCaSJlZ3Ginplw3AoBD5f3TKUcWycvYI1252xgERkNUYeLNdwuijQusxOAQJ4rKOKgTEWvbigY1r25Odv_9gKNEDoFzWhsoMXmY4TW0gQLV8Ybvy5SVA40sGgLCuCkZHMHoN0r3mcPa38y9GdoqssLscZWypPsc7ahcXN0MffKePlApw4zG4sAlGERyb-wr4rWoq07WSkNWzYQOiI6quNMphDwcw_A31mGxNns3tiUusiFAOs0LP4YrJTYylcDSebb_HzKMq6pSdL_rRFsRV9bdkwt1vnUdPBKAPt968p39p7HVW22eLjGmm8aCgYKAegSARASFQHGX2MigE6ITL7DQBbsSImiDiaogg0422"
       
 @app.route("/")
 def hello():
