@@ -12,9 +12,9 @@
       "deviceName": "slave1",
       "initializeParams": {
         "diskSizeGb": "10",
-        "diskType": "projects/warm-rookery-400321/zones/us-west4-b/diskTypes/pd-balanced",
+        "diskType": "projects/warm-rookery-400321/zones/europe-west1-b/diskTypes/pd-standard",
         "labels": {},
-        "sourceImage": "projects/debian-cloud/global/images/debian-11-bullseye-v20221102"
+        "sourceImage": "projects/debian-cloud/global/images/debian-11-bullseye-v20231115"
       },
       "mode": "READ_WRITE",
       "type": "PERSISTENT"
@@ -24,18 +24,21 @@
     "enableDisplay": false
   },
   "guestAccelerators": [],
-  "keyRevocationActionType": "STOP",
-  "labels": {},
+  "instanceEncryptionKey": {},
+  "keyRevocationActionType": "NONE",
+  "labels": {
+    "goog-ec-src": "vm_add-rest"
+  },
   "machineType": "projects/warm-rookery-400321/zones/europe-west1-b/machineTypes/e2-medium",
   "metadata": {
     "items": [
       {
         "key": "startup-script",
-        "value": "apt update\ncurl --output spark.tgz https://dlcdn.apache.org/spark/spark-3.3.1/spark-3.3.1-bin-hadoop3.tgz\napt -y install default-jdk\ntar -xzvf spark.tgz\n./spark-3.3.1-bin-hadoop3/sbin/start-slave.sh spark://spark-master.europe-west1-b.c.spark-371009.internal:7077"
+        "value": "apt update\ncurl --output spark.tgz  https://dlcdn.apache.org/spark/spark-3.5.0/spark-3.5.0-bin-hadoop3.tgz \napt -y install\\ default-jdk\n./spark-3.5.0-bin-hadoop/sbin/start-slave.sh spark://spark-master.europe-west1-d.c.warm-rookery-400321.internal:7077 "
       }
     ]
   },
-  "name": "slave",
+  "name": "slave1",
   "networkInterfaces": [
     {
       "accessConfigs": [
@@ -48,6 +51,9 @@
       "subnetwork": "projects/warm-rookery-400321/regions/europe-west1/subnetworks/default"
     }
   ],
+  "params": {
+    "resourceManagerTags": {}
+  },
   "reservationAffinity": {
     "consumeReservationType": "ANY_RESERVATION"
   },
@@ -59,7 +65,7 @@
   },
   "serviceAccounts": [
     {
-      "email": "569439294570-compute@developer.gserviceaccount.com",
+      "email": "635007151197-compute@developer.gserviceaccount.com",
       "scopes": [
         "https://www.googleapis.com/auth/devstorage.read_only",
         "https://www.googleapis.com/auth/logging.write",
